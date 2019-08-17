@@ -1,30 +1,26 @@
 package com.myCompany.twitterClone.controller;
 
-import com.myCompany.twitterClone.entity.Message;
-import com.myCompany.twitterClone.repository.MessageRepository;
+import com.myCompany.twitterClone.data.entity.Message;
+import com.myCompany.twitterClone.data.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @GetMapping("/greeting")
-    public String greeting(
-            @RequestParam(name = "name", required = false, defaultValue = "Word") String name,
-            Map<String, Object> model) {
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepository.findAll();
 
@@ -33,7 +29,7 @@ public class GreetingController {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
 
@@ -49,7 +45,7 @@ public class GreetingController {
         Iterable<Message> messages;
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepository.findByTag(filter);
-        }else {
+        } else {
             messages = messageRepository.findAll();
         }
         model.put("messages", messages);

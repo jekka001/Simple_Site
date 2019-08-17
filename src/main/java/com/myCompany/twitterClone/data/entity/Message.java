@@ -1,4 +1,4 @@
-package com.myCompany.twitterClone.entity;
+package com.myCompany.twitterClone.data.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
