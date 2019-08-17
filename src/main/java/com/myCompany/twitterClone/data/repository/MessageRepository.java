@@ -1,6 +1,6 @@
-package com.myCompany.twitterClone.repository;
+package com.myCompany.twitterClone.data.repository;
 
-import com.myCompany.twitterClone.entity.Message;
+import com.myCompany.twitterClone.data.entity.Message;
 import org.springframework.data.repository.CrudRepository;
 
 import java.math.BigInteger;
